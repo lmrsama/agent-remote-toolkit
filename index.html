@@ -327,7 +327,7 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
     </p>
     <div class="cover-meta">
       <div><b>By</b>黎明睿（leomrli）</div>
-      <div><b>v1.5</b>2026-05-13</div>
+      <div><b>v1.6</b>2026-05-13</div>
       <div><b>适用</b>CodeBuddy / Cursor / Claude Code 用户</div>
     </div>
   </div>
@@ -503,107 +503,62 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
   </div>
 </section>
 
-<!-- ============ 2. 解决方案：痛点 → 解法 ============ -->
+
+<!-- ============ 2. 解决方案：极简版 ============ -->
 <section class="soft">
   <div class="container">
     <div class="sec-head">
       <span class="sec-num">PART 2 · 解决方案</span>
-      <h2 class="sec-title">三件套：每一件对应一个痛点</h2>
-      <p class="sec-sub">不要被"三件套"这个数字唬住——其实是<b>两个解法</b>解两个痛点，加上第三个兜底护栏。</p>
+      <h2 class="sec-title">三件套：每件一句话</h2>
+      <p class="sec-sub">两个解法解两个痛点，加一条工作纪律保接力。</p>
     </div>
 
     <div class="sol-stack">
 
-      <!-- ① 磁盘内存 -->
       <div class="sol-row">
         <div class="sol-num">01<span class="label">MEMORY</span></div>
         <div class="sol-content">
-          <span class="pin">✓ 解痛点 1：上下文锁内存</span>
+          <span class="pin">✓ 解痛点 1</span>
           <h3>记忆上磁盘</h3>
-          <p class="one-liner">把对话上下文从 LLM 的私有内存抽出来，写到磁盘上的 markdown 文件——任何 agent、任何会话、任何设备读同一份。</p>
-
-          <p><b>为什么解了痛点 1？</b>——小程序定位不准没关系，<b>它接到哪个 agent 都能读同一份 memory</b>。原本"找不到那个 agent"的问题，变成"任何 agent 都是那个 agent"。</p>
-
-          <div class="sol-vis">
-            <svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <marker id="arrM1" markerWidth="6" markerHeight="6" refX="5" refY="2" orient="auto">
-                  <path d="M0,0 L0,4 L5,2 z" fill="#0052D9"/>
-                </marker>
-              </defs>
-              <rect x="230" y="35" width="140" height="60" rx="8" fill="#fff" stroke="#0052D9" stroke-width="2"/>
-              <text x="300" y="55" text-anchor="middle" font-size="11" font-weight="700" fill="#0052D9">.workbuddy/memory/</text>
-              <text x="300" y="70" text-anchor="middle" font-size="10" fill="#1f2937">MEMORY.md</text>
-              <text x="300" y="84" text-anchor="middle" font-size="10" fill="#1f2937">2026-05-13.md</text>
-              <text x="300" y="113" text-anchor="middle" font-size="10" fill="#0052D9" font-weight="600">共享磁盘内存</text>
-              <rect x="40" y="40" width="120" height="50" rx="8" fill="#EAF2FF" stroke="#0052D9" stroke-width="1.4"/>
-              <text x="100" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#0052D9">💻 电脑 Agent</text>
-              <text x="100" y="76" text-anchor="middle" font-size="9" fill="#4E5969">写 MEMORY</text>
-              <line x1="164" y1="65" x2="226" y2="65" stroke="#0052D9" stroke-width="1.6" marker-end="url(#arrM1)"/>
-              <rect x="440" y="40" width="120" height="50" rx="8" fill="#EAF2FF" stroke="#0052D9" stroke-width="1.4"/>
-              <text x="500" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#0052D9">📱 手机 Agent</text>
-              <text x="500" y="76" text-anchor="middle" font-size="9" fill="#4E5969">读 MEMORY</text>
-              <line x1="374" y1="65" x2="436" y2="65" stroke="#0052D9" stroke-width="1.6" marker-end="url(#arrM1)"/>
-              <text x="300" y="20" text-anchor="middle" font-size="11" fill="#1f2937" font-weight="600">电脑写 → 手机读 = 接力上下文</text>
-            </svg>
-          </div>
-          <p style="margin-top:8px; font-size:13.5px;"><b>关键认知：</b>这不是某个工具自带的功能，是<b>你和 agent 约定的协议</b>——任何 agent 只要被告知"读这里"，都能接上。把记忆从工具私域变成通用资产。</p>
-
-          <h4 style="margin-top:18px; color:#B45309;">⚠️ 配套工作纪律：每次执行都立即覆写 memory</h4>
-          <p style="font-size:13.5px;">仅有"磁盘内存"还不够——如果电脑前的 agent 干完事不及时把进度写到日记忆，手机那边读到的就是过期数据。所以必须配一条强制纪律：</p>
-          <div class="callout" style="background:#FFF7E6; border-left-color:#F59E0B;">
-            <b>每完成任何一件实质工作，立即（不等用户催）把进度 append 到当天的 <code>.workbuddy/memory/YYYY-MM-DD.md</code>。</b><br><br>
-            实质工作 = 改文件 / 部署 / 配置 / 修 bug / 做技术决策。<br>
-            写入时机 = 完成的当下，<b>不批量延后</b>。<br>
-            没这一条，"跨端接力"就只是漂亮口号——电脑写完没落盘，手机读到的是空气。
-          </div>
+          <p class="one-liner">把对话上下文从 LLM 内存抽出来，写到 <code>.workbuddy/memory/</code> 下的 markdown 文件——任何 agent 读同一份。</p>
+          <p style="font-size:13px; color:var(--ink-3); margin:0;">⚡ Highlight：这是<b>协议而非工具功能</b>，CodeBuddy / Cursor / Claude Code 通用。</p>
         </div>
       </div>
 
-      <!-- ② 三条死命令 -->
       <div class="sol-row">
         <div class="sol-num">02<span class="label">CONSTRAINTS</span></div>
         <div class="sol-content">
-          <span class="pin">✓ 解痛点 2：授权弹窗按不了</span>
+          <span class="pin">✓ 解痛点 2</span>
           <h3>三条死命令</h3>
-          <p class="one-liner">把权限放到 <code>bypassPermissions</code>（所有授权自动通过），<b>用 3 条硬约束兜底</b>——既能让 agent 自己干完，又不会闯祸。</p>
-
-          <p><b>为什么解了痛点 2？</b>——不是把弹窗"做好按"，而是<b>直接放开自动授权</b>。但放开就有失控风险，所以用三条死命令兜底。</p>
-
+          <p class="one-liner">把权限放到 <code>bypassPermissions</code> 自动通过授权，3 条硬约束兜底防失控。</p>
           <div class="dc-grid">
             <div class="dc-card">
               <div class="dc-num">死命令 ①</div>
               <h4>不删本地文件</h4>
-              <p>不删 <code>.workbuddy/memory/</code> 以外的任何本地文件（除非用户明说）。</p>
-              <div class="fix"><b>防：</b><code>rm -rf</code> 误删项目文件</div>
+              <p>仅 <code>.workbuddy/memory/</code> 内可改，其他文件用户不明说不删。</p>
             </div>
             <div class="dc-card">
               <div class="dc-num">死命令 ②</div>
               <h4>不动外部资源</h4>
-              <p>不删云函数 / 数据库、不动 GitHub 仓库结构性设置。读 + 内容更新可以。</p>
-              <div class="fix"><b>防：</b>误删 prod 资源 / 误改仓库可见性</div>
+              <p>不删云函数 / 数据库 / 仓库结构。读 + 内容更新可以。</p>
             </div>
             <div class="dc-card">
               <div class="dc-num">死命令 ③</div>
               <h4>跑 bash 前先报告</h4>
-              <p>跑任何 bash 命令前，先一行话告诉用户要跑什么。</p>
-              <div class="fix"><b>防：</b>权限放开后用户失去监督——靠这条把命令"广播"出去，用户在手机上能随时喊停</div>
+              <p>跑命令前一行话告诉用户跑什么——手机能随时喊停。</p>
             </div>
           </div>
-
-          <p style="margin-top:8px; font-size:13.5px;"><b>原则：</b>少而硬（3 条够用，超过没人记得住）、写在 <code>MEMORY.md</code> 顶部（每次开会话第一个读到）、<code>bypassPermissions</code> 也不豁免。</p>
+          <p style="font-size:13px; color:var(--ink-3); margin:6px 0 0;">⚡ Highlight：少而硬（3 条够用）、写在 <code>MEMORY.md</code> 顶部、<code>bypassPermissions</code> 也不豁免。</p>
         </div>
       </div>
 
-      <!-- ③ 闭环 -->
       <div class="sol-row">
-        <div class="sol-num">03<span class="label">HANDOFF</span></div>
+        <div class="sol-num">03<span class="label">DISCIPLINE</span></div>
         <div class="sol-content">
-          <span class="pin">✓ 把 ① + ② 串起来：用户体验闭环</span>
-          <h3>开场白接力</h3>
-          <p class="one-liner">让用户在 PC 跑完 skill 后<b>自动拿到一段开场白文本</b>，复制粘贴到手机即可让任意 agent 扮演项目化身。</p>
-
-          <p>① 提供了"共享内存"，② 提供了"自动跑权限"，但中间还差一步：<b>用户怎么告诉手机那边的 agent 去读这份内存</b>？答案就是这段开场白——一段标准化提示，让任意 agent 看到就知道"我应该读哪个项目的 memory，按什么规则干活"。</p>
+          <span class="pin">✓ 让 ① + ② 真正闭环</span>
+          <h3>立即覆写 memory</h3>
+          <p class="one-liner">每完成一件实质工作（改文件 / 部署 / 修 bug），立即 append 到当天日记忆——不批量、不延后。</p>
+          <p style="font-size:13px; color:var(--ink-3); margin:0;">⚡ Highlight：跨端接力的<b>命脉</b>。电脑写晚一秒，手机读到的就是空气。</p>
         </div>
       </div>
 
@@ -611,68 +566,49 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
   </div>
 </section>
 
-<!-- ============ 3. 用户上手路径 ============ -->
+<!-- ============ 3. 用户上手：极简傻瓜式 ============ -->
 <section>
   <div class="container">
     <div class="sec-head">
       <span class="sec-num">PART 3 · 用户上手</span>
-      <h2 class="sec-title">三步：从电脑配好到手机接力</h2>
-      <p class="sec-sub">第 1、2 步在电脑前每个新项目做一次；第 3 步以后每次出门复制粘贴即可。</p>
+      <h2 class="sec-title">0 门槛四步走</h2>
+      <p class="sec-sub">深色字 = 你要做的；<span style="color:var(--ink-3);">浅灰字 = 背后发生了啥（不用理解，只是好奇可以看）</span>。</p>
     </div>
 
     <div class="steps">
 
-      <!-- Step 1 -->
       <div class="step">
         <div class="step-body">
-          <h4>第 1 步 · 在 PC 项目里跑 skill</h4>
-          <p>CodeBuddy 对话里发：</p>
+          <h4>第 0 步 · 装 skill</h4>
+          <p>终端粘一行：</p>
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/lmrsama/agent-remote-toolkit/main/install.sh | bash</code></pre>
+          <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">脚本下载 SKILL.md 到 <code style="background:#F3F4F6;color:#86909C;">~/.workbuddy/skills/claw-remote-takeover/</code>。已装会备份旧版。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-body">
+          <h4>第 1 步 · 在项目里发指令</h4>
+          <p>CodeBuddy 对话框发：</p>
           <pre><code>/skill claw-remote-takeover</code></pre>
-          <p>skill 自动做这些：</p>
-          <ul>
-            <li>检查/创建 <code>.workbuddy/memory/MEMORY.md</code></li>
-            <li>把 3 条死命令 + 1 条「立即覆写 memory」工作纪律写到顶部</li>
-            <li>提示你去微信搜「WorkBuddy」小程序绑定本机</li>
-            <li>引导你在输入框发 <code>/config set permissions.mode bypassPermissions</code> 放权限</li>
-          </ul>
-          <div class="callout" style="margin-top: 10px;">
-            <b>为什么是引导而非自动？</b><code>/config</code> 是 CodeBuddy CLI 的内置斜杠命令，必须由你在输入框里手动发——agent 没有这个命令的执行权限。
-          </div>
+          <p>跟着它的提示走完两件事就行：<b>① 微信搜「WorkBuddy」绑定本机</b>；<b>② 在输入框发 <code>/config set permissions.mode bypassPermissions</code></b>。完成后告诉它"好了"。</p>
+          <p style="color:var(--ink-3); font-size:13px; margin:10px 0 0; line-height:1.7;">背后发生：skill 帮你建 <code style="background:#F3F4F6;color:#86909C;">.workbuddy/memory/MEMORY.md</code>，往顶部写 3 条死命令 + 1 条覆写 memory 工作纪律，然后等你完成手机绑定 + 放权限两步。</p>
         </div>
       </div>
 
-      <!-- Step 2 -->
       <div class="step">
         <div class="step-body">
-          <h4>第 2 步 · 复制 skill 返回的开场白</h4>
-          <p>当你完成 step 1 的三件事告诉 skill「好了」，它会<b>把开场白文本现成生成好返还给你</b>，形如：</p>
-          <pre><code>身份：你是「[项目名]」远程化身。
-
-启动：读 [路径]/.workbuddy/memory/MEMORY.md + 今天的日记忆，
-      一行话答："已接管 + 当前版本 + 上一件做的事"。
-
-规则：跑 bash 前先报告 / 完成立刻 append 日记忆 / 三行结论。
-
-开干。</code></pre>
-          <p>项目名、路径已经按你 PC 当前的工作目录自动填好——不用自己编辑，复制就能用。</p>
+          <h4>第 2 步 · 复制开场白</h4>
+          <p>skill 会把开场白文本现成生成给你（项目名、路径都填好了），<b>原样复制</b>就行。</p>
+          <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">背后发生：开场白里包含读哪个 memory 路径、要遵守哪些规则——任意 agent 看到都能扮演这个项目的远程化身。</p>
         </div>
       </div>
 
-      <!-- Step 3 -->
       <div class="step">
         <div class="step-body">
-          <h4>第 3 步 · 手机粘贴到 WorkBuddy 小程序</h4>
-          <p>地铁、床上、咖啡厅——掏出手机：</p>
-          <ul>
-            <li>微信 → WorkBuddy 小程序 → Claw 入口</li>
-            <li>粘贴上一步的开场白发出去</li>
-            <li>agent 读完 memory，一行话回你"已接管 + 当前状态"</li>
-            <li>你直接发任务，agent 干完写日记忆，下次电脑前你打开依然能接上</li>
-          </ul>
-          <div class="callout" style="margin-top: 12px;">
-            <b>核心闭环：</b>电脑写 → 磁盘存 → 手机读 → 手机写 → 磁盘存 → 电脑读。<br>
-            两个 agent，一份内存，无缝接力。
-          </div>
+          <h4>第 3 步 · 手机粘贴</h4>
+          <p>微信 → WorkBuddy 小程序 → Claw 入口 → <b>粘贴开场白发出去</b>。地铁上、床上、咖啡厅，随时给指令，agent 接到就干。</p>
+          <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">背后发生：手机的 agent 读 MEMORY + 今天日记忆 → 一行话回你"已接管"。它干完写日记忆，电脑前打开依然能接。</p>
         </div>
       </div>
 
@@ -747,7 +683,7 @@ cp -r agent-remote-toolkit/skills/claw-remote-takeover ~/.workbuddy/skills/</cod
 
 <footer>
   <div class="container">
-    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.5</div>
+    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.6</div>
     <div style="margin-top: 6px;">By <b>黎明睿（leomrli）</b> · 2026-05-13 · QQ 浏览器 / 二次编辑专项实践沉淀</div>
     <div style="margin-top: 6px;">仓库：<a href="https://github.com/lmrsama/agent-remote-toolkit">github.com/lmrsama/agent-remote-toolkit</a></div>
     <div style="margin-top: 14px; font-size: 12px; color: #5b6478;">本文档内网传阅，不对外公开。</div>
