@@ -286,6 +286,40 @@ pre code { background: transparent; color: inherit; padding: 0; font-size: inher
   color: #16A34A; background: #E8F7EE;
   border: 1px solid #B7E4C7;
 }
+.os-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin: 12px 0 4px;
+}
+.os-card {
+  background: #F8FAFD; border: 1px solid var(--line);
+  border-radius: 10px; padding: 14px 16px;
+  display: grid; grid-template-columns: 56px 1fr; gap: 14px;
+  align-items: center;
+}
+.os-card .os-icon {
+  width: 56px; height: 56px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-weight: 700; font-size: 20px;
+}
+.os-card.mac .os-icon {
+  background: #1f2937; color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.os-card.win .os-icon {
+  background: #012456; color: #fff;
+}
+.os-card h5 { margin: 0 0 4px; font-size: 14px; font-weight: 700; color: var(--ink); }
+.os-card p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.os-card kbd {
+  display: inline-block; background: #fff; border: 1px solid #d1d5db;
+  border-bottom-width: 2px; border-radius: 4px;
+  padding: 1px 6px; font-size: 12px; font-family: inherit;
+  color: var(--ink); margin: 0 2px;
+}
+@media (max-width: 768px) {
+  .os-grid { grid-template-columns: 1fr; }
+}
 
 table {
   width: 100%; border-collapse: separate; border-spacing: 0;
@@ -606,9 +640,28 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
       <div class="step">
         <div class="step-body">
           <h4>第 0 步 · 装 skill <span class="step-where pc">📍 PC 终端</span></h4>
-          <p>打开任意终端（iTerm / Terminal / VS Code 终端都行），粘一行回车：</p>
+          <p>打开终端，粘一行回车：</p>
           <pre><code>curl -fsSL https://raw.githubusercontent.com/lmrsama/agent-remote-toolkit/main/install.sh | bash</code></pre>
-          <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">脚本下载 SKILL.md 到 <code style="background:#F3F4F6;color:#86909C;">~/.workbuddy/skills/claw-remote-takeover/</code>。已装会备份旧版。</p>
+
+          <p style="margin:14px 0 6px; font-size:13.5px; color:var(--ink-2);"><b>"终端"在哪？</b></p>
+          <div class="os-grid">
+            <div class="os-card mac">
+              <div class="os-icon" aria-label="macOS Terminal icon">&gt;_</div>
+              <div>
+                <h5>macOS</h5>
+                <p>Launchpad 搜「终端」/「Terminal」，或按 <kbd>⌘</kbd>+<kbd>空格</kbd> 输 <code style="background:#F3F4F6;">terminal</code>。Dock 里黑底白色 <code style="background:#F3F4F6;">&gt;_</code> 那个 icon 就是。iTerm / VS Code 终端也行。</p>
+              </div>
+            </div>
+            <div class="os-card win">
+              <div class="os-icon" aria-label="Windows Terminal icon">&gt;_</div>
+              <div>
+                <h5>Windows</h5>
+                <p>按 <kbd>⊞ Win</kbd>+<kbd>X</kbd> 选「<b>Windows 终端</b>」/「<b>PowerShell</b>」；或开始菜单搜 <code style="background:#F3F4F6;">terminal</code> / <code style="background:#F3F4F6;">powershell</code>。Win11 自带 Windows Terminal；Win10 用 PowerShell 也能跑。<b>不要</b>用 cmd（不支持 curl 管道）。</p>
+              </div>
+            </div>
+          </div>
+
+          <p style="color:var(--ink-3); font-size:13px; margin:10px 0 0;">背后发生：脚本下载 SKILL.md 到 <code style="background:#F3F4F6;color:#86909C;">~/.workbuddy/skills/claw-remote-takeover/</code>（Win 路径是 <code style="background:#F3F4F6;color:#86909C;">C:\Users\你\.workbuddy\skills\…</code>）。已装会备份旧版。</p>
         </div>
       </div>
 
