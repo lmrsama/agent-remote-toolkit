@@ -327,7 +327,7 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
     </p>
     <div class="cover-meta">
       <div><b>By</b>黎明睿（leomrli）</div>
-      <div><b>v1.3</b>2026-05-13</div>
+      <div><b>v1.4</b>2026-05-13</div>
       <div><b>适用</b>CodeBuddy / Cursor / Claude Code 用户</div>
     </div>
   </div>
@@ -676,19 +676,35 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
   <div class="container">
     <div class="sec-head">
       <span class="sec-num">PART 4 · Skill 部署</span>
-      <h2 class="sec-title">怎么装、要改什么</h2>
-      <p class="sec-sub">所有动作 skill 已经封好了。装一次终身可用。</p>
+      <h2 class="sec-title">怎么装：三档方式按门槛挑</h2>
+      <p class="sec-sub">所有动作 skill 已经封好了。装一次终身可用。下面三种方式任选其一。</p>
     </div>
 
-    <h3>安装</h3>
-    <pre><code># 克隆仓库
-git clone https://github.com/lmrsama/agent-remote-toolkit.git
+    <h3>方式 A · 一键安装（推荐）</h3>
+    <p>打开终端，粘贴下面这一行回车即可。脚本会自动下载 skill 到 <code>~/.workbuddy/skills/claw-remote-takeover/</code>：</p>
+    <pre><code>curl -fsSL https://raw.githubusercontent.com/lmrsama/agent-remote-toolkit/main/install.sh | bash</code></pre>
+    <p>已装过会自动备份旧版（<code>claw-remote-takeover.bak.时间戳</code>），不会丢。</p>
 
-# 复制 skill 到本机
+    <h3>方式 B · 手动下载（不会用终端的同事用）</h3>
+    <ol>
+      <li>下载 SKILL.md：<a href="https://raw.githubusercontent.com/lmrsama/agent-remote-toolkit/main/skills/claw-remote-takeover/SKILL.md" download style="color:var(--qb-blue);font-weight:600;">点这里</a> （右键 → "链接另存为"）</li>
+      <li>找到本机 <code>~/.workbuddy/skills/</code> 目录（macOS：Finder 按 ⌘+Shift+G 输入路径；Windows：资源管理器地址栏粘贴 <code>%USERPROFILE%\.workbuddy\skills</code>）</li>
+      <li>在里面新建文件夹 <code>claw-remote-takeover</code></li>
+      <li>把刚才下载的 <code>SKILL.md</code> 拖进去</li>
+    </ol>
+
+    <h3>方式 C · git clone（工程师习惯）</h3>
+    <pre><code>git clone https://github.com/lmrsama/agent-remote-toolkit.git
 cp -r agent-remote-toolkit/skills/claw-remote-takeover ~/.workbuddy/skills/</code></pre>
 
-    <h3>调用</h3>
-    <p>在任意 CodeBuddy 会话里发 <code>/skill claw-remote-takeover</code>。每个新项目调用一次。</p>
+    <h3>装完之后</h3>
+    <ol>
+      <li><b>重启一次 CodeBuddy</b>（让它扫到新 skill）</li>
+      <li>进入想远程化的项目目录</li>
+      <li>对话框发 <code>/skill claw-remote-takeover</code></li>
+      <li>跟着 skill 引导走完三步（写 MEMORY、开 gateway、放权限），它会返回开场白文本给你</li>
+      <li>开场白复制粘贴到手机微信 → WorkBuddy 小程序 → Claw 入口 → 远程指挥就绪</li>
+    </ol>
 
     <h3>需要自定义的点</h3>
     <table>
@@ -716,13 +732,13 @@ cp -r agent-remote-toolkit/skills/claw-remote-takeover ~/.workbuddy/skills/</cod
 
     <h3>仓库</h3>
     <pre><code>https://github.com/lmrsama/agent-remote-toolkit</code></pre>
-    <p>包含本文档源码 + skill 完整代码 + MEMORY.md 模板。fork 改成自己的即可。</p>
+    <p>包含本文档源码 + skill 完整代码 + MEMORY.md 模板 + 一键安装脚本。fork 改成自己的即可。</p>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.3</div>
+    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.4</div>
     <div style="margin-top: 6px;">By <b>黎明睿（leomrli）</b> · 2026-05-13 · QQ 浏览器 / 二次编辑专项实践沉淀</div>
     <div style="margin-top: 6px;">仓库：<a href="https://github.com/lmrsama/agent-remote-toolkit">github.com/lmrsama/agent-remote-toolkit</a></div>
     <div style="margin-top: 14px; font-size: 12px; color: #5b6478;">本文档内网传阅，不对外公开。</div>
