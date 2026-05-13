@@ -270,8 +270,22 @@ pre code { background: transparent; color: inherit; padding: 0; font-size: inher
   display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 17px;
 }
-.step-body h4 { margin: 4px 0 10px; font-size: 17px; }
+.step-body h4 { margin: 4px 0 10px; font-size: 17px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .step-body p { margin: 0 0 10px; font-size: 14.5px; }
+.step-where {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.3px;
+  padding: 3px 9px; border-radius: 4px;
+  white-space: nowrap;
+}
+.step-where.pc {
+  color: var(--qb-blue); background: var(--qb-blue-bg);
+  border: 1px solid #B8D4FF;
+}
+.step-where.phone {
+  color: #16A34A; background: #E8F7EE;
+  border: 1px solid #B7E4C7;
+}
 
 table {
   width: 100%; border-collapse: separate; border-spacing: 0;
@@ -584,15 +598,15 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
     <div class="sec-head">
       <span class="sec-num">PART 3 · 用户上手</span>
       <h2 class="sec-title">0 门槛四步走</h2>
-      <p class="sec-sub">深色字 = 你要做的；<span style="color:var(--ink-3);">浅灰字 = 背后发生了啥（不用理解，只是好奇可以看）</span>。</p>
+      <p class="sec-sub">每步右上角 <span class="step-where pc" style="font-size:11px;padding:2px 7px;">📍 PC</span> / <span class="step-where phone" style="font-size:11px;padding:2px 7px;">📍 手机</span> 标了在哪做。深色字 = 你要做的；<span style="color:var(--ink-3);">浅灰字 = 背后发生了啥（不用理解，只是好奇可以看）</span>。</p>
     </div>
 
     <div class="steps">
 
       <div class="step">
         <div class="step-body">
-          <h4>第 0 步 · 装 skill</h4>
-          <p>终端粘一行：</p>
+          <h4>第 0 步 · 装 skill <span class="step-where pc">📍 PC 终端</span></h4>
+          <p>打开任意终端（iTerm / Terminal / VS Code 终端都行），粘一行回车：</p>
           <pre><code>curl -fsSL https://raw.githubusercontent.com/lmrsama/agent-remote-toolkit/main/install.sh | bash</code></pre>
           <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">脚本下载 SKILL.md 到 <code style="background:#F3F4F6;color:#86909C;">~/.workbuddy/skills/claw-remote-takeover/</code>。已装会备份旧版。</p>
         </div>
@@ -600,26 +614,26 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
 
       <div class="step">
         <div class="step-body">
-          <h4>第 1 步 · 在项目里发指令</h4>
-          <p>CodeBuddy 对话框发：</p>
+          <h4>第 1 步 · 在项目里发指令 <span class="step-where pc">📍 PC · CodeBuddy 对话框</span></h4>
+          <p>在你想远程化的项目里，CodeBuddy 对话框发：</p>
           <pre><code>/skill claw-remote-takeover</code></pre>
-          <p>跟着它的提示走完两件事就行：<b>① 微信搜「WorkBuddy」绑定本机</b>；<b>② 在输入框发 <code>/config set permissions.mode bypassPermissions</code></b>。完成后告诉它"好了"。</p>
+          <p>跟着它的提示走完两件事：<b>① <span class="step-where phone">📍 手机微信</span> 搜「WorkBuddy」绑定本机</b>；<b>② <span class="step-where pc">📍 回到 PC 对话框</span> 发 <code>/config set permissions.mode bypassPermissions</code></b>。完成后告诉它"好了"。</p>
           <p style="color:var(--ink-3); font-size:13px; margin:10px 0 0; line-height:1.7;">背后发生：skill 帮你建 <code style="background:#F3F4F6;color:#86909C;">.workbuddy/memory/MEMORY.md</code>，往顶部写 3 条死命令 + 1 条覆写 memory 工作纪律，然后等你完成手机绑定 + 放权限两步。</p>
         </div>
       </div>
 
       <div class="step">
         <div class="step-body">
-          <h4>第 2 步 · 复制开场白</h4>
-          <p>skill 会把开场白文本现成生成给你（项目名、路径都填好了），<b>原样复制</b>就行。</p>
+          <h4>第 2 步 · 复制开场白 <span class="step-where pc">📍 PC · CodeBuddy 对话框</span></h4>
+          <p>skill 会把开场白文本现成生成给你（项目名、路径都填好了），<b>原样复制</b>到剪贴板就行。</p>
           <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">背后发生：开场白里包含读哪个 memory 路径、要遵守哪些规则——任意 agent 看到都能扮演这个项目的远程化身。</p>
         </div>
       </div>
 
       <div class="step">
         <div class="step-body">
-          <h4>第 3 步 · 手机粘贴</h4>
-          <p>微信 → WorkBuddy 小程序 → Claw 入口 → <b>粘贴开场白发出去</b>。地铁上、床上、咖啡厅，随时给指令，agent 接到就干。</p>
+          <h4>第 3 步 · 手机粘贴 <span class="step-where phone">📍 手机微信 · WorkBuddy 小程序</span></h4>
+          <p>微信 → WorkBuddy 小程序 → Claw 入口 → <b>粘贴开场白发出去</b>。从此地铁上、床上、咖啡厅，随时给指令，PC 上的 agent 接到就干。</p>
           <p style="color:var(--ink-3); font-size:13px; margin:8px 0 0;">背后发生：手机的 agent 读 MEMORY + 今天日记忆 → 一行话回你"已接管"。它干完写日记忆，电脑前打开依然能接。</p>
         </div>
       </div>
