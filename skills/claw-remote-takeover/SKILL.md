@@ -48,20 +48,37 @@ mkdir -p .workbuddy/memory
 ---
 ```
 
-### Step 3 · 引导用户开 Gateway
+### Step 3 · 引导用户接通手机入口（关键：你不要尝试执行斜杠命令）
 
-提示用户：
+提示用户（用 markdown 输出，给清晰步骤）：
 
-> 准备好了。最后两件事你需要在 CodeBuddy 里手动做：
+> 我已经把 MEMORY + 死命令写好了。剩下两件事**得你在 CodeBuddy 输入框里手动做**（这两个都是 CLI 内置斜杠命令，我执行不了）：
 >
-> 1. 发 `/gateway tunnel`  → 出二维码 → 手机微信扫码绑定 WorkBuddy 小程序
-> 2. 发 `/config set permissions.mode bypassPermissions` → 把权限放开
+> **1) 起远程隧道（出二维码）**
 >
-> 完成后告诉我"好了"，我就用远程化身的姿态待命。
+> 在 CodeBuddy 输入框发：
+> ```
+> /gateway tunnel
+> ```
+> 终端会打印一个二维码。
+>
+> **2) 用手机绑定 WorkBuddy 小程序**
+>
+> - 打开微信 → 顶部搜索栏搜"WorkBuddy" → 进小程序
+> - 小程序里扫上一步那个二维码 → 自动绑定本会话
+>
+> **3) 把权限放开（手机才能干活）**
+>
+> 在 CodeBuddy 输入框发：
+> ```
+> /config set permissions.mode bypassPermissions
+> ```
+>
+> 三步都做完了告诉我"好了"，我返回开场白文本给你，复制粘贴到手机小程序 Claw 入口就能远程指挥。
 
-### Step 4 · 进入"待命"姿态
+### Step 4 · 用户说"好了"后，返回完整开场白
 
-用户说"好了"后，输出：
+输出（按当前项目自动填）：
 
 ```
 ✅ 远程化身就位。
@@ -69,15 +86,34 @@ mkdir -p .workbuddy/memory
 身份：[当前项目名] 远程化身
 工作目录：[cwd]
 当前权限：bypassPermissions
-死命令：已生效（不删 memory 外文件 / 不动云资源 / 跑 bash 前先报告）
+死命令：已生效（不删 memory 外文件 / 不动云资源 / bash 前报告）
 
-你现在可以关电脑去做别的事。手机微信 → WorkBuddy 小程序 → Claw 入口 → 直接发指令，我接到。
+────── 复制下面这段，粘到手机 WorkBuddy 小程序 Claw 入口 ──────
 
-完成任何实质工作我都会立刻写到今天的 .workbuddy/memory/YYYY-MM-DD.md，电脑前那个我重启也能接住。
+身份：你是「[当前项目名]」远程化身。
+
+启动动作：
+1. 读 [cwd]/.workbuddy/memory/MEMORY.md
+2. 读今天 .workbuddy/memory/YYYY-MM-DD.md
+3. 一行话答："已接管 + 当前版本 + 上一件做的事"
+
+工作规则：
+- 我从手机找你都是「[当前项目名]」的事
+- 跑 bash 前先一行话告诉我要跑什么
+- 完成每件实质工作立刻 append 到今天的日记忆
+- 三行结论，不写长篇
+
+开干。
+
+────────────────────────────────────────────
+
+发送后我会读 memory 接住状态。你现在可以关电脑了。
 ```
 
 ## 注意
 
-- 这个 skill 只做"配置 + 引导"，**不实际执行 `/gateway` 或 `/config` 斜杠命令**——那些必须由 CodeBuddy CLI 本身处理
+- 这个 skill 只做"配置 + 引导"，**绝对不要尝试执行 `/gateway tunnel` 或 `/config set` 斜杠命令**——它们是 CodeBuddy CLI 内置命令，必须由用户在输入框里手动发，agent 没有执行权限
+- 不要尝试"扫二维码""调用小程序"——这些都不是 agent 能做的，引导用户去微信搜「WorkBuddy」即可
 - 死命令模板可以让用户在 step 2 后微调（比如加更多保护文件/资源），但**不要主动删减三条核心**
 - 如果用户已经在远程指挥模式下（即从小程序进入），不需要再触发这个 skill，直接干活即可
+
