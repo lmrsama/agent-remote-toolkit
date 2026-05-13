@@ -8,6 +8,7 @@
 :root {
   --qb-blue: #0052D9;
   --qb-blue-2: #165DFF;
+  --qb-blue-3: #4080FF;
   --qb-blue-bg: #EAF2FF;
   --qb-blue-soft: #F5F9FF;
   --ink: #1f2937;
@@ -16,6 +17,8 @@
   --line: #e5e7eb;
   --white: #ffffff;
   --accent-yellow: #FFD666;
+  --accent-warn: #F53F3F;
+  --accent-ok: #16A34A;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -26,9 +29,8 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
-.container { max-width: 980px; margin: 0 auto; }
+.container { max-width: 1080px; margin: 0 auto; }
 
-/* COVER */
 .cover {
   background: #0052D9;
   color: #fff;
@@ -62,7 +64,6 @@ body {
 }
 .cover-meta b { font-weight: 600; opacity: 1; margin-right: 6px; }
 
-/* SECTION */
 section {
   padding: 60px 80px;
   border-bottom: 1px solid var(--line);
@@ -84,8 +85,12 @@ section.soft { background: var(--qb-blue-soft); }
   line-height: 1.8; margin: 0;
 }
 h3 {
-  font-size: 18px; font-weight: 700; color: var(--ink);
-  margin: 24px 0 10px;
+  font-size: 19px; font-weight: 700; color: var(--ink);
+  margin: 28px 0 12px;
+}
+h4 {
+  font-size: 15.5px; font-weight: 700; color: var(--ink);
+  margin: 18px 0 8px;
 }
 p { margin: 0 0 12px; color: var(--ink-2); font-size: 15px; }
 b, strong { color: var(--ink); font-weight: 600; }
@@ -117,30 +122,127 @@ pre code { background: transparent; color: inherit; padding: 0; font-size: inher
 }
 .callout.warn b { color: #B45309; }
 
-/* 三件套卡片 */
-.triad {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 16px; margin-top: 8px;
+/* 痛点图 */
+.pain-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 28px; margin-top: 24px;
 }
-.triad-card {
+.pain-card {
   background: var(--white); border: 1px solid var(--line);
-  border-radius: 12px; padding: 22px;
-  position: relative;
+  border-radius: 14px; padding: 24px;
+  display: flex; flex-direction: column;
 }
-.triad-card::before {
+.pain-card .pain-tag {
+  display: inline-block; font-size: 11.5px; font-weight: 700;
+  letter-spacing: 1.5px; color: var(--accent-warn);
+  background: #FFECE8;
+  padding: 3px 10px; border-radius: 10px; margin-bottom: 12px;
+  align-self: flex-start;
+}
+.pain-card h3 { margin: 0 0 8px; font-size: 18px; }
+.pain-card .pain-vis {
+  background: var(--qb-blue-soft);
+  border-radius: 10px; padding: 14px;
+  margin: 12px 0 14px;
+}
+.pain-card .pain-vis svg {
+  display: block; width: 100%; height: auto;
+}
+.pain-card p {
+  font-size: 14px; line-height: 1.75; margin: 0;
+}
+
+/* 三件套大卡 */
+.triad-stack { margin-top: 16px; }
+.triad-row {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 14px; padding: 26px 28px;
+  margin-bottom: 16px; position: relative;
+  display: grid; grid-template-columns: 80px 1fr; gap: 22px;
+  align-items: start;
+}
+.triad-row::before {
   content: ''; position: absolute; top: 0; left: 0;
   width: 4px; height: 100%; background: var(--qb-blue);
-  border-radius: 12px 0 0 12px;
+  border-radius: 14px 0 0 14px;
 }
-.triad-card .num {
-  font-size: 11.5px; font-weight: 700; letter-spacing: 1.8px;
-  color: var(--qb-blue); margin-bottom: 6px;
+.triad-num {
+  font-size: 56px; font-weight: 800;
+  color: var(--qb-blue); line-height: 1;
+  letter-spacing: -2px;
+  font-family: 'SF Pro Display', -apple-system, sans-serif;
 }
-.triad-card h3 { font-size: 17px; margin: 0 0 8px; color: var(--ink); }
-.triad-card .what { font-size: 13.5px; color: var(--ink); margin: 0 0 8px; font-weight: 600; }
-.triad-card .why { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.7; }
+.triad-num .label {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; color: var(--qb-blue);
+  margin-top: 4px;
+}
+.triad-content h3 {
+  margin: 0 0 6px; font-size: 21px;
+}
+.triad-content .one-liner {
+  font-size: 15px; color: var(--ink-2);
+  margin: 0 0 14px;
+}
+.triad-content .solves {
+  display: inline-block;
+  font-size: 12.5px; font-weight: 600;
+  background: #E6F7EE; color: var(--accent-ok);
+  padding: 3px 10px; border-radius: 4px;
+  margin-bottom: 14px;
+}
+.triad-vis {
+  background: var(--qb-blue-soft);
+  border-radius: 10px; padding: 14px 16px;
+  margin: 12px 0;
+}
+.triad-vis svg { display: block; width: 100%; height: auto; }
 
-/* 表格 */
+/* 死命令三条 */
+.dc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin: 14px 0;
+}
+.dc-card {
+  background: #FFF7E6;
+  border: 1px solid #FCD34D;
+  border-radius: 10px; padding: 14px 16px;
+}
+.dc-card .dc-num {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  color: #B45309; margin-bottom: 6px;
+}
+.dc-card h4 {
+  margin: 0 0 6px; font-size: 14.5px; color: #78350F;
+}
+.dc-card p {
+  margin: 0; font-size: 13px; color: #92400E; line-height: 1.7;
+}
+
+/* Step 流程 */
+.steps {
+  counter-reset: step;
+  margin: 14px 0;
+  display: grid; gap: 16px;
+}
+.step {
+  display: grid; grid-template-columns: 44px 1fr; gap: 16px;
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 12px; padding: 18px 22px;
+  align-items: start;
+}
+.step::before {
+  counter-increment: step;
+  content: counter(step);
+  width: 36px; height: 36px;
+  background: var(--qb-blue); color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 16px;
+}
+.step-body h4 { margin: 4px 0 8px; font-size: 16px; }
+.step-body p { margin: 0 0 8px; font-size: 14px; }
+
 table {
   width: 100%; border-collapse: separate; border-spacing: 0;
   background: var(--white); border: 1px solid var(--line);
@@ -157,17 +259,14 @@ thead th {
   color: var(--ink-2); font-size: 13px;
 }
 tbody tr:last-child td { border-bottom: none; }
-.tick { color: #16a34a; font-weight: 700; }
 
-/* FOOTER */
 footer {
   padding: 36px 80px; background: #0b1020;
   color: #9ca3af; font-size: 13px; line-height: 1.8;
 }
 footer b { color: #d6deeb; }
-footer a { color: var(--qb-blue-2); text-decoration: none; }
+footer a { color: var(--qb-blue-3); text-decoration: none; }
 
-/* MOBILE */
 @media (max-width: 768px) {
   body { line-height: 1.75; }
   section { padding: 40px 20px; }
@@ -177,9 +276,17 @@ footer a { color: var(--qb-blue-2); text-decoration: none; }
   .cover-meta { flex-direction: column; gap: 6px; margin-top: 28px; font-size: 12.5px; }
   .sec-title { font-size: 21px; line-height: 1.4; }
   .sec-sub { font-size: 14.5px; }
-  h3 { font-size: 16.5px; }
+  h3 { font-size: 17px; }
   p, ul, ol { font-size: 14.5px; }
-  .triad { grid-template-columns: 1fr; gap: 12px; }
+  .pain-grid { grid-template-columns: 1fr; gap: 16px; }
+  .triad-row {
+    grid-template-columns: 1fr; gap: 8px; padding: 22px;
+  }
+  .triad-num { font-size: 32px; }
+  .triad-content h3 { font-size: 17px; }
+  .dc-grid { grid-template-columns: 1fr; gap: 10px; }
+  .step { grid-template-columns: 36px 1fr; padding: 16px 18px; }
+  .step::before { width: 30px; height: 30px; font-size: 14px; }
   table { display: block; overflow-x: auto; }
   thead, tbody { display: table; width: max-content; min-width: 100%; }
   th, td { min-width: 110px; font-size: 13px; padding: 10px 12px; }
@@ -190,7 +297,6 @@ footer a { color: var(--qb-blue-2); text-decoration: none; }
 </head>
 <body>
 
-<!-- COVER -->
 <section class="cover">
   <div class="container">
     <div class="cover-label">METHODOLOGY · 内部传阅</div>
@@ -200,164 +306,308 @@ footer a { color: var(--qb-blue-2); text-decoration: none; }
     </p>
     <div class="cover-meta">
       <div><b>By</b>黎明睿（leomrli）</div>
-      <div><b>v1.0</b>2026-05-13</div>
+      <div><b>v1.2</b>2026-05-13</div>
       <div><b>适用</b>CodeBuddy / Cursor / Claude Code 用户</div>
     </div>
   </div>
 </section>
 
-<!-- 1. 背景痛点 -->
+<!-- ============ 1. 背景痛点（图文并茂） ============ -->
 <section>
   <div class="container">
     <div class="sec-head">
       <span class="sec-num">1 · WHY</span>
-      <h2 class="sec-title">痛点：AI Agent 绑在工位上</h2>
-      <p class="sec-sub">主流 AI 编程 agent（CodeBuddy / Cursor / Claude Code）都跑在桌面 IDE 里。三件事让你必须坐在电脑前用：</p>
+      <h2 class="sec-title">两个共同痛点，把你绑在工位上</h2>
+      <p class="sec-sub">不论用 CodeBuddy、Cursor 还是 Claude Code，远程指挥 AI agent 时都会撞上同样两堵墙。</p>
     </div>
-    <ul>
-      <li><b>上下文锁在内存里</b>——会话一关 context 丢光，下次重讲一遍</li>
-      <li><b>工具调用要授权弹窗</b>——写文件 / 跑命令 / 推代码，弹窗在桌面，你不在就卡住</li>
-      <li><b>没有移动入口</b>——开发商默认你 24 小时坐工位</li>
-    </ul>
-    <div class="callout">
-      <b>问题不是"找一个能远程用的工具"</b>，是把对话上下文从 agent 的私有内存里抽出来——让任何 agent、任何设备都能接力。
+
+    <div class="pain-grid">
+      <!-- 痛点 1：上下文锁在内存 -->
+      <div class="pain-card">
+        <span class="pain-tag">痛点 1</span>
+        <h3>上下文锁在内存里</h3>
+        <div class="pain-vis">
+          <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" aria-label="WorkBuddy 小程序只有一个 Claw 入口，内存却塞了一整团">
+            <defs>
+              <marker id="arrP1" markerWidth="6" markerHeight="6" refX="5" refY="2" orient="auto">
+                <path d="M0,0 L0,4 L5,2 z" fill="#86909C"/>
+              </marker>
+            </defs>
+            <!-- 手机 -->
+            <rect x="14" y="22" width="80" height="110" rx="10" fill="#fff" stroke="#0052D9" stroke-width="1.6"/>
+            <text x="54" y="46" text-anchor="middle" font-size="10" font-weight="700" fill="#0052D9">小程序</text>
+            <rect x="22" y="58" width="64" height="22" rx="4" fill="#EAF2FF" stroke="#4080FF" stroke-width="1"/>
+            <text x="54" y="72" text-anchor="middle" font-size="9" fill="#1f2937">Claw（唯一入口）</text>
+            <text x="54" y="98" text-anchor="middle" font-size="8" fill="#86909C">不分项目</text>
+            <text x="54" y="112" text-anchor="middle" font-size="8" fill="#86909C">不分会话</text>
+            <!-- 箭头 -->
+            <line x1="100" y1="76" x2="138" y2="76" stroke="#86909C" stroke-width="1.6" marker-end="url(#arrP1)"/>
+            <text x="118" y="68" text-anchor="middle" font-size="9" fill="#86909C">无法定位</text>
+            <!-- 一团乱麻 -->
+            <rect x="148" y="22" width="160" height="110" rx="10" fill="#FFF7E6" stroke="#F59E0B" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <text x="228" y="42" text-anchor="middle" font-size="10" font-weight="700" fill="#B45309">Mac 上的内存</text>
+            <text x="228" y="58" text-anchor="middle" font-size="9" fill="#92400E">3 个项目同时跑</text>
+            <!-- 杂乱小方块 -->
+            <rect x="160" y="68" width="42" height="20" rx="3" fill="#fff" stroke="#F59E0B"/><text x="181" y="81" text-anchor="middle" font-size="8" fill="#78350F">项目 A</text>
+            <rect x="208" y="68" width="42" height="20" rx="3" fill="#fff" stroke="#F59E0B"/><text x="229" y="81" text-anchor="middle" font-size="8" fill="#78350F">项目 B</text>
+            <rect x="256" y="68" width="42" height="20" rx="3" fill="#fff" stroke="#F59E0B"/><text x="277" y="81" text-anchor="middle" font-size="8" fill="#78350F">项目 C</text>
+            <rect x="160" y="94" width="60" height="20" rx="3" fill="#fff" stroke="#F59E0B"/><text x="190" y="107" text-anchor="middle" font-size="8" fill="#78350F">昨天的会话</text>
+            <rect x="226" y="94" width="72" height="20" rx="3" fill="#fff" stroke="#F59E0B"/><text x="262" y="107" text-anchor="middle" font-size="8" fill="#78350F">前天的另一个</text>
+          </svg>
+        </div>
+        <p>WorkBuddy 小程序只有<b>一个 Claw 入口</b>，但你 Mac 上一会话开十几个 agent。<b>小程序不知道该接哪个</b>——你昨天和它聊到哪、改到哪，它一概不清楚。</p>
+      </div>
+
+      <!-- 痛点 2：授权弹窗 -->
+      <div class="pain-card">
+        <span class="pain-tag">痛点 2</span>
+        <h3>工具调用要授权弹窗</h3>
+        <div class="pain-vis">
+          <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" aria-label="agent 想跑命令但需要授权弹窗，用户在外不在电脑前按不了">
+            <defs>
+              <marker id="arrP2" markerWidth="6" markerHeight="6" refX="5" refY="2" orient="auto">
+                <path d="M0,0 L0,4 L5,2 z" fill="#F53F3F"/>
+              </marker>
+            </defs>
+            <!-- 手机用户 -->
+            <circle cx="40" cy="76" r="22" fill="#EAF2FF" stroke="#0052D9" stroke-width="1.6"/>
+            <text x="40" y="72" text-anchor="middle" font-size="14">📱</text>
+            <text x="40" y="106" text-anchor="middle" font-size="9" fill="#1f2937">你在地铁上</text>
+            <!-- 指令箭头 -->
+            <line x1="62" y1="76" x2="100" y2="76" stroke="#0052D9" stroke-width="1.6" marker-end="url(#arrP1)"/>
+            <text x="80" y="68" text-anchor="middle" font-size="9" fill="#0052D9">"帮我部署"</text>
+            <!-- agent -->
+            <rect x="108" y="58" width="60" height="36" rx="6" fill="#fff" stroke="#0052D9" stroke-width="1.6"/>
+            <text x="138" y="76" text-anchor="middle" font-size="10" font-weight="700" fill="#0052D9">Agent</text>
+            <text x="138" y="88" text-anchor="middle" font-size="8" fill="#4E5969">想跑命令</text>
+            <!-- 弹窗 -->
+            <line x1="170" y1="76" x2="200" y2="76" stroke="#F53F3F" stroke-width="1.6" marker-end="url(#arrP2)"/>
+            <rect x="208" y="36" width="100" height="80" rx="8" fill="#FFECE8" stroke="#F53F3F" stroke-width="1.6"/>
+            <text x="258" y="54" text-anchor="middle" font-size="10" font-weight="700" fill="#D92D20">⚠ 授权弹窗</text>
+            <text x="258" y="72" text-anchor="middle" font-size="9" fill="#92400E">运行</text>
+            <text x="258" y="84" text-anchor="middle" font-size="9" fill="#92400E">deploy.py？</text>
+            <rect x="218" y="92" width="36" height="14" rx="3" fill="#fff" stroke="#F53F3F"/><text x="236" y="102" text-anchor="middle" font-size="8" fill="#D92D20">允许</text>
+            <rect x="262" y="92" width="36" height="14" rx="3" fill="#fff" stroke="#86909C"/><text x="280" y="102" text-anchor="middle" font-size="8" fill="#86909C">拒绝</text>
+            <text x="258" y="130" text-anchor="middle" font-size="9" fill="#D92D20" font-weight="700">没人按 → 卡死</text>
+          </svg>
+        </div>
+        <p>agent 想写文件、跑 shell、推 git——任何"动作"都会弹授权窗，<b>必须在 Mac 屏幕上点</b>。你在外面看不到也按不了，agent 就在那里干转圈，所有任务停摆。</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 24px;">
+      <b>真正的问题不是"找一个能远程用的工具"</b>，而是怎么让 agent <b>记得住、跑得动</b>——把记忆抽出来、把授权放开但兜住。
     </div>
   </div>
 </section>
 
-<!-- 2. 三件套方案 -->
+<!-- ============ 2. 三件套解决方案 ============ -->
 <section class="soft">
   <div class="container">
     <div class="sec-head">
       <span class="sec-num">2 · SOLUTION</span>
-      <h2 class="sec-title">解决方案：三件套</h2>
-      <p class="sec-sub">看似复杂的远程协作，本质三件东西。每件解决一个具体痛点。</p>
+      <h2 class="sec-title">三件套：磁盘内存 + 小程序入口 + 三条死命令</h2>
+      <p class="sec-sub">前两件解痛点 1（接力），后一件解痛点 2（授权 + 兜底）。三件咬合，缺一不可。</p>
     </div>
 
-    <div class="triad">
-      <div class="triad-card">
-        <div class="num">PART ①</div>
-        <h3>🧠 持久内存</h3>
-        <p class="what">把记忆从 LLM context 挪到磁盘文件</p>
-        <p class="why">解决"会话一关 context 丢光"——任何 agent、任何设备读同一份记忆，无缝接力</p>
-      </div>
-      <div class="triad-card">
-        <div class="num">PART ②</div>
-        <h3>📱 远程入口</h3>
-        <p class="what">从手机触达正在跑的 agent</p>
-        <p class="why">解决"没有移动入口"——WorkBuddy 小程序最低成本，一个二维码搞定</p>
-      </div>
-      <div class="triad-card">
-        <div class="num">PART ③</div>
-        <h3>🔒 死命令护栏</h3>
-        <p class="what">放开高权限模式后兜底</p>
-        <p class="why">解决"授权弹窗按不了"——把权限放开自动通过，3 条死命令防止失控</p>
-      </div>
-    </div>
+    <div class="triad-stack">
 
-    <h3 style="margin-top:32px;">三件如何咬合</h3>
-    <p>缺一不可：没<b>持久内存</b>，远程接力是新会话；没<b>远程入口</b>，出门就联系不上；没<b>死命令</b>，远程模式不敢放权限等于半残。</p>
+      <!-- ① 磁盘内存 -->
+      <div class="triad-row">
+        <div class="triad-num">01<span class="label">MEMORY</span></div>
+        <div class="triad-content">
+          <h3>记忆上磁盘</h3>
+          <p class="one-liner">把对话上下文从 LLM 的私有内存抽出来，写到磁盘上的 markdown 文件。任何 agent、任何会话、任何设备都能读同一份。</p>
+          <span class="solves">✓ 解决痛点 1：跨端跨会话也能精准接上</span>
+          <div class="triad-vis">
+            <svg viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg" aria-label="记忆上磁盘后跨 agent 接力">
+              <defs>
+                <marker id="arrM1" markerWidth="6" markerHeight="6" refX="5" refY="2" orient="auto">
+                  <path d="M0,0 L0,4 L5,2 z" fill="#0052D9"/>
+                </marker>
+              </defs>
+              <!-- 中央磁盘文件 -->
+              <rect x="180" y="35" width="120" height="60" rx="8" fill="#fff" stroke="#0052D9" stroke-width="2"/>
+              <text x="240" y="55" text-anchor="middle" font-size="11" font-weight="700" fill="#0052D9">.workbuddy/memory/</text>
+              <text x="240" y="70" text-anchor="middle" font-size="10" fill="#1f2937">MEMORY.md</text>
+              <text x="240" y="84" text-anchor="middle" font-size="10" fill="#1f2937">2026-05-13.md</text>
+              <text x="240" y="110" text-anchor="middle" font-size="10" fill="#0052D9" font-weight="600">共享内存</text>
+              <!-- 左：电脑 agent -->
+              <rect x="20" y="40" width="100" height="50" rx="8" fill="#EAF2FF" stroke="#0052D9" stroke-width="1.4"/>
+              <text x="70" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#0052D9">💻 电脑 Agent</text>
+              <text x="70" y="76" text-anchor="middle" font-size="9" fill="#4E5969">写 MEMORY</text>
+              <line x1="124" y1="65" x2="176" y2="65" stroke="#0052D9" stroke-width="1.6" marker-end="url(#arrM1)"/>
+              <!-- 右：手机 agent -->
+              <rect x="360" y="40" width="100" height="50" rx="8" fill="#EAF2FF" stroke="#0052D9" stroke-width="1.4"/>
+              <text x="410" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#0052D9">📱 手机 Agent</text>
+              <text x="410" y="76" text-anchor="middle" font-size="9" fill="#4E5969">读 MEMORY</text>
+              <line x1="304" y1="65" x2="356" y2="65" stroke="#0052D9" stroke-width="1.6" marker-end="url(#arrM1)"/>
+              <text x="240" y="20" text-anchor="middle" font-size="11" fill="#1f2937" font-weight="600">电脑写 → 手机读 = 接力上下文</text>
+            </svg>
+          </div>
+          <p style="margin: 8px 0 0; font-size: 13.5px;"><b>关键认知：</b>这不是某个工具自带的功能，是<b>你和 agent 约定的协议</b>——任何 agent 只要被告知"读这里"，都能接上。把记忆从工具私域变成通用资产。</p>
+        </div>
+      </div>
+
+      <!-- ② 小程序入口 -->
+      <div class="triad-row">
+        <div class="triad-num">02<span class="label">CHANNEL</span></div>
+        <div class="triad-content">
+          <h3>WorkBuddy 小程序</h3>
+          <p class="one-liner">CodeBuddy 自带的远程入口——发 <code>/gateway tunnel</code> 出二维码，手机微信扫码即用。</p>
+          <span class="solves">✓ 与 ① 配合：手机喊一声，agent 读 memory 就接上</span>
+          <p style="margin-top:10px;">人人皆知，不展开。<b>关键是和"磁盘内存"配合</b>：让 Claw 入口接到的那个 agent 主动读你项目里的 MEMORY，扮演项目的"远程化身"。</p>
+        </div>
+      </div>
+
+      <!-- ③ 死命令 -->
+      <div class="triad-row">
+        <div class="triad-num">03<span class="label">CONSTRAINTS</span></div>
+        <div class="triad-content">
+          <h3>三条死命令</h3>
+          <p class="one-liner">把权限放到 <code>bypassPermissions</code>（所有授权自动通过），用 3 条硬约束兜底。</p>
+          <span class="solves">✓ 解决痛点 2：手机点不了授权 → 直接放开 + 三条防失控</span>
+
+          <div class="dc-grid">
+            <div class="dc-card">
+              <div class="dc-num">死命令 ①</div>
+              <h4>不删本地文件</h4>
+              <p>不删 <code>.workbuddy/memory/</code> 以外的任何本地文件，除非用户明说。<br><b>解决：</b>防 <code>rm</code> 误删项目文件。</p>
+            </div>
+            <div class="dc-card">
+              <div class="dc-num">死命令 ②</div>
+              <h4>不动外部资源</h4>
+              <p>不删云函数 / 数据库、不动 GitHub 仓库结构性设置。读 + 内容更新可以，结构性删改一律 STOP。<br><b>解决：</b>防 agent 误删 prod 资源。</p>
+            </div>
+            <div class="dc-card">
+              <div class="dc-num">死命令 ③</div>
+              <h4>跑 bash 前先报告</h4>
+              <p>跑任何 bash 命令前，先一行话告诉用户要跑什么。<br><b>解决：</b>权限放开后用户仍能在手机上看到命令、随时喊停。</p>
+            </div>
+          </div>
+
+          <p style="margin-top:8px; font-size:13.5px;"><b>原则：</b>少而硬（3 条够用，超过没人记得住）、写在 MEMORY.md 顶部（每次开会话第一个读到）、<code>bypassPermissions</code> 也不豁免。</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- 3. 怎么用 -->
+<!-- ============ 3. 用户上手路径 ============ -->
 <section>
   <div class="container">
     <div class="sec-head">
       <span class="sec-num">3 · HOW</span>
-      <h2 class="sec-title">怎么用：4 步上手</h2>
-      <p class="sec-sub">给 CodeBuddy 用户的标准动作。其他 IDE 替换对应入口即可。</p>
+      <h2 class="sec-title">三步上手：从电脑到手机的接力</h2>
+      <p class="sec-sub">第 1、2 步在电脑前做完一次（每个新项目一次）；第 3 步以后每次出门复制粘贴即可。</p>
     </div>
 
-    <h3>Step 1 · 装 skill</h3>
-    <p>把仓库里的 <code>skills/claw-remote-takeover/</code> 整个目录复制到本机：</p>
-    <pre><code>cp -r skills/claw-remote-takeover ~/.workbuddy/skills/</code></pre>
+    <div class="steps">
 
-    <h3>Step 2 · 在当前项目里调用 skill</h3>
-    <p>CodeBuddy 对话里发：</p>
-    <pre><code>/skill claw-remote-takeover</code></pre>
-    <p>它会自动：</p>
-    <ul>
-      <li>检查/创建 <code>.workbuddy/memory/MEMORY.md</code></li>
-      <li>把 3 条死命令模板写到顶部（已有的不重复）</li>
-      <li>引导你开 Gateway + 切 <code>bypassPermissions</code> 权限</li>
-    </ul>
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-body">
+          <h4>第 1 步 · 在 PC 项目里跑 skill</h4>
+          <p>CodeBuddy 对话里发：</p>
+          <pre><code>/skill claw-remote-takeover</code></pre>
+          <p>skill 自动做三件事：</p>
+          <ul>
+            <li>检查/创建 <code>.workbuddy/memory/MEMORY.md</code></li>
+            <li>把 3 条死命令写到顶部</li>
+            <li>引导你开 <code>/gateway tunnel</code> + 切 <code>bypassPermissions</code></li>
+          </ul>
+          <p style="margin-top:10px;"><b>跑完 skill 会直接返回开场白文本给你</b>——不用自己编辑，复制就能用。</p>
+        </div>
+      </div>
 
-    <h3>Step 3 · 手机绑小程序</h3>
-    <p>对话里发 <code>/gateway tunnel</code> → 出二维码 → 手机微信扫码 → WorkBuddy 小程序自动绑这台 Mac。</p>
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-body">
+          <h4>第 2 步 · 复制 skill 返回的开场白</h4>
+          <p>形如下面这段（项目名、路径已自动填好）：</p>
+          <pre><code>身份：你是「[项目名]」远程化身。
+启动：读 [路径]/.workbuddy/memory/MEMORY.md + 今天的日记忆，
+       一行话答："已接管 + 当前版本 + 上一件做的事"。
+规则：跑 bash 前先报告 / 完成立刻 append 日记忆 / 三行结论。
+开干。</code></pre>
+        </div>
+      </div>
 
-    <h3>Step 4 · 出门干活</h3>
-    <p>关电脑 / 锁屏（不睡眠），手机微信 → WorkBuddy 小程序 → Claw 入口直接发指令，agent 接到就执行，文件交付推回小程序。</p>
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-body">
+          <h4>第 3 步 · 手机 WorkBuddy 小程序粘贴开场白</h4>
+          <p>地铁、床上、咖啡厅——掏出手机：</p>
+          <ul>
+            <li>微信 → WorkBuddy 小程序 → Claw 入口</li>
+            <li>粘贴上一步的开场白发出去</li>
+            <li>agent 读完 memory 一行话回你"已接管 + 当前状态"</li>
+            <li>你直接发任务，agent 干完写日记忆，下次电脑前你打开依然能接上</li>
+          </ul>
+          <div class="callout" style="margin-top: 12px;">
+            <b>核心闭环：</b>电脑写 → 磁盘存 → 手机读 → 手机写 → 磁盘存 → 电脑读。<br>
+            两个 agent，一份内存，无缝接力。
+          </div>
+        </div>
+      </div>
 
-    <div class="callout warn">
-      <b>已知坑：</b>小程序 Claw 入口锁定 <code>~/WorkBuddy/Claw</code> 目录，如果你在多个项目里都跑 agent，<b>小程序只接 Claw 那个</b>。<br><br>
-      <b>解法：</b>让 Claw 目录里的 agent 跨目录读其他项目的 memory，扮演"远程化身"——所以才需要持久内存这第一件套。
     </div>
   </div>
 </section>
 
-<!-- 4. 自定义 -->
+<!-- ============ 4. Skill 部署 ============ -->
 <section class="soft">
   <div class="container">
     <div class="sec-head">
-      <span class="sec-num">4 · CUSTOMIZE</span>
-      <h2 class="sec-title">自定义：要改什么、怎么改</h2>
-      <p class="sec-sub">默认配置 80% 场景能用。剩下 20% 按下面三个点调。</p>
+      <span class="sec-num">4 · DEPLOY</span>
+      <h2 class="sec-title">Skill 怎么装、要改什么</h2>
+      <p class="sec-sub">所有标准动作 skill 已经封好了。装一次终身可用。</p>
     </div>
 
+    <h3>安装</h3>
+    <pre><code># 克隆仓库
+git clone https://github.com/lmrsama/agent-remote-toolkit.git
+
+# 复制 skill 到本机
+cp -r agent-remote-toolkit/skills/claw-remote-takeover ~/.workbuddy/skills/</code></pre>
+
+    <h3>调用</h3>
+    <p>在任意 CodeBuddy 会话里发 <code>/skill claw-remote-takeover</code>。每个新项目调用一次（写一次 MEMORY 就行了）。</p>
+
+    <h3>需要自定义的点</h3>
     <table>
       <thead>
-        <tr>
-          <th style="width:20%;">要改什么</th>
-          <th style="width:30%;">改在哪</th>
-          <th>怎么改</th>
-        </tr>
+        <tr><th style="width:22%;">改什么</th><th style="width:32%;">改在哪</th><th>怎么改</th></tr>
       </thead>
       <tbody>
         <tr>
           <td><b>3 条死命令</b></td>
           <td><code>.workbuddy/memory/MEMORY.md</code> 顶部</td>
-          <td>原版保护"本地文件 / 云资源 / bash 透明"。如果你项目有特殊禁区（比如不能动 prod 数据库、不能 push master），自己加一条。<b>不要超过 5 条，超过 agent 记不住</b>。</td>
+          <td>原版保护"本地文件 / 云资源 / bash 透明"。项目有特殊禁区（不能动 prod DB、不能 push master）自己加一条。<b>不超过 5 条</b>。</td>
         </tr>
         <tr>
           <td><b>用户偏好</b></td>
           <td><code>MEMORY.md</code> 用户偏好区块</td>
-          <td>写下你的工作风格（详尽/简洁、要不要图表、是否需要拍马屁）。下次 agent 启动会读，行为就贴合你。</td>
+          <td>写下你的工作风格（详尽/简洁、要图表、要不要拍马屁）。下次 agent 启动会读，行为会贴合你。</td>
         </tr>
         <tr>
-          <td><b>启动开场白</b></td>
+          <td><b>开场白</b></td>
           <td>每次手机第一句话</td>
-          <td>默认模板见下方"开场白"。换项目时把"二次编辑专项"换成你自己的项目名 + memory 路径即可。</td>
+          <td>skill 跑完自动给你。如换项目，把项目名、memory 路径换掉即可。</td>
         </tr>
       </tbody>
     </table>
 
-    <h3>开场白模板</h3>
-    <pre><code>身份：你是「[项目名]」远程化身。
-
-启动动作：
-1. 读 [项目路径]/.workbuddy/memory/MEMORY.md
-2. 读今天的 .workbuddy/memory/YYYY-MM-DD.md
-3. 一行话答："已接管 + 当前版本 + 上一件做的事"
-
-工作规则：
-- 我从手机找你都是这个项目的事
-- 跑 bash 前先一行话告诉我跑什么
-- 完成每件实质工作立刻 append 到今天的日记忆
-- 三行结论，不写长篇
-
-开干。</code></pre>
-
-    <h3>仓库地址</h3>
+    <h3>仓库</h3>
     <pre><code>https://github.com/lmrsama/agent-remote-toolkit</code></pre>
-    <p>包含本文档源码 + skill + MEMORY.md 模板。直接 fork 改成自己的。</p>
+    <p>包含本文档源码 + skill 完整代码 + MEMORY.md 模板。fork 改成自己的即可。</p>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.0</div>
+    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.2</div>
     <div style="margin-top: 6px;">By <b>黎明睿（leomrli）</b> · 2026-05-13 · QQ 浏览器 / 二次编辑专项实践沉淀</div>
     <div style="margin-top: 6px;">仓库：<a href="https://github.com/lmrsama/agent-remote-toolkit">github.com/lmrsama/agent-remote-toolkit</a></div>
     <div style="margin-top: 14px; font-size: 12px; color: #5b6478;">本文档内网传阅，不对外公开。</div>
