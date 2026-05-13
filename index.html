@@ -327,7 +327,7 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
     </p>
     <div class="cover-meta">
       <div><b>By</b>黎明睿（leomrli）</div>
-      <div><b>v1.4</b>2026-05-13</div>
+      <div><b>v1.5</b>2026-05-13</div>
       <div><b>适用</b>CodeBuddy / Cursor / Claude Code 用户</div>
     </div>
   </div>
@@ -548,6 +548,15 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
             </svg>
           </div>
           <p style="margin-top:8px; font-size:13.5px;"><b>关键认知：</b>这不是某个工具自带的功能，是<b>你和 agent 约定的协议</b>——任何 agent 只要被告知"读这里"，都能接上。把记忆从工具私域变成通用资产。</p>
+
+          <h4 style="margin-top:18px; color:#B45309;">⚠️ 配套工作纪律：每次执行都立即覆写 memory</h4>
+          <p style="font-size:13.5px;">仅有"磁盘内存"还不够——如果电脑前的 agent 干完事不及时把进度写到日记忆，手机那边读到的就是过期数据。所以必须配一条强制纪律：</p>
+          <div class="callout" style="background:#FFF7E6; border-left-color:#F59E0B;">
+            <b>每完成任何一件实质工作，立即（不等用户催）把进度 append 到当天的 <code>.workbuddy/memory/YYYY-MM-DD.md</code>。</b><br><br>
+            实质工作 = 改文件 / 部署 / 配置 / 修 bug / 做技术决策。<br>
+            写入时机 = 完成的当下，<b>不批量延后</b>。<br>
+            没这一条，"跨端接力"就只是漂亮口号——电脑写完没落盘，手机读到的是空气。
+          </div>
         </div>
       </div>
 
@@ -622,12 +631,12 @@ footer a { color: var(--qb-blue-3); text-decoration: none; }
           <p>skill 自动做这些：</p>
           <ul>
             <li>检查/创建 <code>.workbuddy/memory/MEMORY.md</code></li>
-            <li>把 3 条死命令写到顶部</li>
-            <li>提示你去微信搜「WorkBuddy」小程序、扫码绑定本会话</li>
-            <li>引导你在输入框发 <code>/gateway tunnel</code> 出二维码、发 <code>/config set permissions.mode bypassPermissions</code> 放权限</li>
+            <li>把 3 条死命令 + 1 条「立即覆写 memory」工作纪律写到顶部</li>
+            <li>提示你去微信搜「WorkBuddy」小程序绑定本机</li>
+            <li>引导你在输入框发 <code>/config set permissions.mode bypassPermissions</code> 放权限</li>
           </ul>
           <div class="callout" style="margin-top: 10px;">
-            <b>为什么是引导而非自动？</b><code>/gateway</code> 和 <code>/config</code> 是 CodeBuddy CLI 的内置斜杠命令，必须由你在输入框里手动发——agent 没有这两个命令的执行权限。
+            <b>为什么是引导而非自动？</b><code>/config</code> 是 CodeBuddy CLI 的内置斜杠命令，必须由你在输入框里手动发——agent 没有这个命令的执行权限。
           </div>
         </div>
       </div>
@@ -738,7 +747,7 @@ cp -r agent-remote-toolkit/skills/claw-remote-takeover ~/.workbuddy/skills/</cod
 
 <footer>
   <div class="container">
-    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.4</div>
+    <div><b>把 AI Agent 从电脑里放出来</b> · 远程指挥三件套方法论 v1.5</div>
     <div style="margin-top: 6px;">By <b>黎明睿（leomrli）</b> · 2026-05-13 · QQ 浏览器 / 二次编辑专项实践沉淀</div>
     <div style="margin-top: 6px;">仓库：<a href="https://github.com/lmrsama/agent-remote-toolkit">github.com/lmrsama/agent-remote-toolkit</a></div>
     <div style="margin-top: 14px; font-size: 12px; color: #5b6478;">本文档内网传阅，不对外公开。</div>
